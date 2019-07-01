@@ -8,8 +8,8 @@ GIT_USER_EMAIL=${GIT_USER_EMAIL:-senna@email.com}
 docker run -it --rm \
   -v $PWD:/home/$CUSTOM_USER/Documents \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  -v ~/.ssh:/home/$CUSTOM_USER/.ssh \
-  -v ~/.aws:/home/$CUSTOM_USER/.aws \
+  -v $HOME/.ssh:/home/$CUSTOM_USER/.ssh \
+  -v $HOME/.aws:/home/$CUSTOM_USER/.aws \
   -e HOST_PATH=$PWD \
   -e HOST_USER_ID=$(id -u $USER) \
   -e HOST_GROUP_ID=$(id -g $USER) \
