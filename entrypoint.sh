@@ -6,6 +6,7 @@ if [ ! -z "$GIT_USER_NAME" ] && [ ! -z "$GIT_USER_EMAIL" ]; then
 	git config --global user.email "$GIT_USER_EMAIL"
 fi
 
+# git config --global core.excludesfile "$HOME/.gitignore_global"
 # Get standard cali USER_ID variable
 USER_ID=${HOST_USER_ID:-9001}
 GROUP_ID=${HOST_GROUP_ID:-9001}

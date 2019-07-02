@@ -104,7 +104,7 @@ COPY scripts/git-script.sh ${HOME}/bin/git-script.sh
 RUN chmod +x ${HOME}/.tmux/plugins/kube-tmux/kube.tmux
 
 # COPY scripts/ycmd-python ${HOME}/bin/ycmd-python
-RUN mkdir ${HOME}/Documents
+RUN mkdir ${HOME}/Workspace
 RUN mkdir ${HOME}/.cache
 RUN touch /etc/arch-release
 WORKDIR ${HOME}

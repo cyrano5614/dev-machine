@@ -25,32 +25,6 @@ SERVICE_HANDLER := api
 
 VENDOR_DIR := vendor
 
-.PHONY: container-clean
-container-clean:
-	docker-compose -f docker/run-app.yaml stop && \
-	docker-compose -f docker/run-app.yaml rm -f && \
-	docker-compose -f docker/run-test.yaml stop && \
-	docker-compose -f docker/run-test.yaml rm -f
-
-.PHONY: clean
-clean:
-	rm -rf node_modules && \
-	rm -rf package-lock.json
-
-.PHONY: install
-install: clean
-	npm install
-
-.PHONY: test
-test:
-	npm run test-unit && npm run test-integration
-
-.PHONY: test-stack
-test-stack: container-clean
-	TAG=$(TAG) VERSION=$(VERSION) IMAGE=$(IMAGE) ENV=$(ENV) docker-compose -f docker/run-test.yaml run --service-ports analytics && \
-	TAG=$(TAG) VERSION=$(VERSION) IMAGE=$(IMAGE) ENV=$(ENV) docker-compose -f docker/run-test.yaml stop && \
-	TAG=$(TAG) VERSION=$(VERSION) IMAGE=$(IMAGE) ENV=$(ENV) docker-compose -f docker/run-test.yaml rm -f
-
 .PHONY: build
 build:
 	TAG=$(TAG) VERSION=$(VERSION) IMAGE=$(IMAGE) ENV=$(ENV) scripts/build.sh
@@ -66,9 +40,3 @@ tag:
 .PHONY: start
 start:
 	TAG=$(TAG) scripts/run.sh
-
-.PHONY: start-stack
-start-stack: container-clean
-	TAG=$(TAG) VERSION=$(VERSION) IMAGE=$(IMAGE) ENV=$(ENV) docker-compose -f docker/run-app.yaml up
-	TAG=$(TAG) VERSION=$(VERSION) IMAGE=$(IMAGE) ENV=$(ENV) docker-compose -f docker/run-app.yaml stop && \
-	TAG=$(TAG) VERSION=$(VERSION) IMAGE=$(IMAGE) ENV=$(ENV) docker-compose -f docker/run-app.yaml rm -f
