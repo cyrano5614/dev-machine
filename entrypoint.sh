@@ -26,9 +26,9 @@ CUSTOM_USER=${CUSTOM_USER:-senna}
 groupadd --non-unique -g "$GROUP_ID" group
 
 # Set the user's uid and gid
-echo $USER_ID
-echo $GROUP_ID
-echo $CUSTOM_USER
+# echo $USER_ID
+# echo $GROUP_ID
+# echo $CUSTOM_USER
 usermod --non-unique --uid "$USER_ID" --gid "$GROUP_ID" $CUSTOM_USER
 chown -R $CUSTOM_USER: /home/$CUSTOM_USER
 

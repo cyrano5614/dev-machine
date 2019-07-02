@@ -147,11 +147,7 @@ let g:ale_statusline_format = [
 " YCM
 " let g:ycm_min_num_of_chars_for_completion = 99
 let g:ycm_global_ycm_extra_conf = $HOME . '/.local/share/nvim/site/plugged/YouCompleteMe/.ycm_extra_conf.py'
-
-" NOTMUCH
-" let g:notmuch_reader = 'mutt -f %s'
-let g:notmuch_reader = 'w3m -f %s'
-let g:notmuch_sendmail = 'msmtp'
+" let g:ycm_server_python_interpreter = 'ycmd-python'
 
 " GRIP for github markdown preview
 let vim_markdown_preview_github=1

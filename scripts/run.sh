@@ -1,5 +1,6 @@
 #!/bin/sh
 
+TAG=${TAG:-latest}
 CONTAINER_NAME=${CONTAINER_NAME:-dev-machine}
 CUSTOM_USER=${CUSTOM_USER:-senna}
 GIT_USER_NAME=${GIT_USER_NAME:-senna}
@@ -10,6 +11,7 @@ docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v $HOME/.ssh:/home/$CUSTOM_USER/.ssh \
   -v $HOME/.aws:/home/$CUSTOM_USER/.aws \
+  -v $HOME/.kube:/home/$CUSTOM_USER/.kube \
   -e HOST_PATH=$PWD \
   -e HOST_USER_ID=$(id -u $USER) \
   -e HOST_GROUP_ID=$(id -g $USER) \
@@ -17,4 +19,4 @@ docker run -it --rm \
   -e GIT_USER_NAME=$GIT_USER_NAME \
   -e GIT_USER_EMAIL=$GIT_USER_EMAIL \
   --name $CONTAINER_NAME \
-  cyrano5614/dev-machine:latest
+  cyrano5614/dev-machine:${TAG}
